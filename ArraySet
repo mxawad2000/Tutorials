@@ -1,0 +1,64 @@
+import java.util.ArrayList;
+import java.util.Collection;
+
+/**
+ *
+ * @author mamoun.awad
+ */
+public class ArraySet extends ArrayList<Integer> {
+    
+    @Override
+    public boolean add(Integer elem){
+        if(contains(elem)) return true;
+        else return super.add(elem);
+    }
+    @Override
+    public void add(int index, Integer elem){
+        if(!contains(elem)) super.add(index,elem);
+    }
+    @Override
+    public boolean addAll(Collection<? extends Integer> coll){
+        for(Integer e : coll){
+            if(!super.contains(e)) add(e);
+        }
+        return true;
+    }
+        @Override
+    public boolean addAll(int index,Collection<? extends Integer> coll){
+        for(Integer e : coll){
+            if(!super.contains(e)) add(index,e);
+        }
+        return true;
+    }
+    @Override
+    public Integer set(int index, Integer elem){
+        if(super.contains(elem)) return null;
+        else return super.set(index,elem);
+    }
+    
+    public static void main(String[] arg){
+        ArraySet set = new ArraySet();
+        int[] arr = {1,2,3, 1,3,4, 2,3,4};
+        for(int e : arr) set.add(0,e);
+        System.out.println("set:" + set);
+        ArraySet set2 = new ArraySet();
+        for(int i=0;i<3;i++) {set2.add(i);set2.add(i);}
+        System.out.println("set2:" + set2);
+        /////////////////////////////////////////
+        set.addAll(0,set2);
+        System.out.println("set2 added to set:" + set);   
+        //////////////////////////////////////////
+        set.set(0,1); //set element that is exists in the set.
+        System.out.println("set2 added to set:" + set);  
+        ////////////////////////////////////////////
+        set.set(0,10); //set element that is not exists in the set.
+        System.out.println("set2 added to set:" + set);  
+        /*
+        set:[4, 3, 2, 1]
+        set2:[0, 1, 2]
+        set2 added to set:[0, 4, 3, 2, 1]
+        set2 added to set:[0, 4, 3, 2, 1]
+        set2 added to set:[10, 4, 3, 2, 1]
+        */
+    }
+}
