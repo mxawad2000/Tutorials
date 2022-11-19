@@ -1,0 +1,55 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package csbp219_2022;
+
+import java.util.ArrayList;
+
+/**
+ *
+ * @author mamoun.awad
+ */
+public class ArraySet2 {
+    private ArrayList<Integer> ref = new ArrayList();
+    
+    public boolean add(Integer elem){
+        if( !ref.contains(elem)) ref.add(elem);
+        return true;
+    }    
+    public void add(int index, Integer elem){
+        if( !ref.contains(elem)) ref.add(index,elem);        
+    }
+    //I did not wat to have addAll.
+    
+    public String toString(){
+        return ref.toString();
+    }
+    public int size(){
+        return ref.size();
+    }
+    
+    //remove elements
+    public Integer remove(int index){ return ref.remove(index);}
+    public boolean remove(Integer elem){ return ref.remove(elem);}
+    public void clear(){ ref.clear();}
+    
+    //search for element
+    public Integer indexOf(Integer elem){ return ref.indexOf(elem);}
+    public boolean contains(Integer elem){ return ref.contains(elem);}
+    
+    //define set method...
+    public Integer set(int index, Integer elem){
+        if(!ref.contains(elem)) return ref.set(index,elem);
+        else return null;
+    }
+        
+    public static void main(String[] arg){
+        ArraySet2 set = new ArraySet2();
+        int[] arr = {1,2,3, 1,3,4, 2,3,4};
+        for(int e : arr) set.add(0,e);
+        System.out.println("set:" + set);
+        //go throu the array list..        
+    }
+}
