@@ -1,0 +1,71 @@
+//example of assigning 2 listeners (click and longClick) to a text view.
+private void tryClickLongClick(){
+        TextView tv = findViewById(R.id.tv1);
+        tv.setOnClickListener( (v) ->
+                Toast.makeText(GestureDemoActivity.this,"Just Clicked",Toast.LENGTH_SHORT).show());
+        tv.setOnLongClickListener(v ->
+                {
+                    Toast.makeText(GestureDemoActivity.this, "Long Clicked", Toast.LENGTH_SHORT).show();
+                    //return false; //keep goind and handle other listeners..
+                    return true; //consume the event, and no more handling from other listeners..
+
+                }
+        );
+
+    }
+
+//example of detecting number of taps on text view.
+    @SuppressLint("ClickableViewAccessibility")
+    private void tryNumTapsDetector(){
+        TextView tv = findViewById(R.id.tv2);
+        tv.setOnTouchListener( new NumTapsListener(){
+            @Override
+            public void handleTaps() {
+                handler.post( () -> {
+                            switch (taps) {
+                                case 1:
+                                    Toast.makeText(GestureDemoActivity.this, "One Tap", Toast.LENGTH_SHORT).show();
+                                    break;
+                                case 2:
+                                    Toast.makeText(GestureDemoActivity.this, "TWO Taps", Toast.LENGTH_SHORT).show();
+                                    break;
+                                case 3:
+                                    Toast.makeText(GestureDemoActivity.this, "THREE Taps", Toast.LENGTH_SHORT).show();
+                                    break;
+                                case 4:
+                                    Toast.makeText(GestureDemoActivity.this, "FOUR / VERY HARD Taps", Toast.LENGTH_SHORT).show();
+                                    break;
+                            }
+                        }
+                );
+            }
+        });
+    }
+
+//example of detecting type of swipe onf an image view
+    @SuppressLint("ClickableViewAccessibility")
+    private void trySwipeDemo0(){
+        ImageView iv = findViewById(R.id.img_iv);
+        iv.setOnTouchListener(
+                new SwipeListener2() {
+                    @Override
+                    public void handleSwipe() {
+                        int type = getSwipeType();
+                        switch(type){
+                            case SWIPE_UP:
+                                Toast.makeText(GestureDemoActivity.this,"Swipe UP",Toast.LENGTH_SHORT).show();
+                                break;
+                            case SWIPE_DOWN:
+                                Toast.makeText(GestureDemoActivity.this,"Swipe DOWN",Toast.LENGTH_SHORT).show();
+                                break;
+                            case SWIPE_LEFT:
+                                Toast.makeText(GestureDemoActivity.this,"Swipe LEFT",Toast.LENGTH_SHORT).show();
+                                break;
+                            case SWIPE_RIGHT:
+                                Toast.makeText(GestureDemoActivity.this,"Swipe RIGHT",Toast.LENGTH_SHORT).show();
+                                break;
+                        }
+                    }
+                }
+        );
+    }
