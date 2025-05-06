@@ -1,9 +1,0 @@
-A "touch gesture" occurs when a user places one or more fingers on the touch screen, and your application interprets that pattern of touches as a particular gesture.
-Android provides special types of touch screen events such as 
-pinch 
-double tap, 
-scrolls , 
-long presses and 
-Flinch, 
-flinging 
-    These are all known as gestures.
